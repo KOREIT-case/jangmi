@@ -18,9 +18,23 @@ body{background:var(--navy);color:var(--white);font-family:'Noto Sans KR',sans-s
 
 /* ── HEADER ── */
 header{background:var(--navy3);border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--blue-l);}
+.logo{font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--blue-l);text-decoration:none;display:inline-flex;align-items:center;}
+.logo:hover{color:#a0c0ff;}
 .logo span{color:var(--muted);font-weight:400;margin-left:8px;font-size:13px;}
-.corp-badge{font-size:12px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);}
+
+/* ── DROPDOWN ── */
+.dropdown{position:relative;}
+.corp-badge{font-size:12px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;background:transparent;transition:border-color .2s,color .2s;}
+.corp-badge:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.85);}
+.corp-badge .arrow{font-size:9px;transition:transform .2s;}
+.dropdown.open .corp-badge .arrow{transform:rotate(180deg);}
+.drop-menu{position:absolute;right:0;top:calc(100% + 10px);background:#1A2640;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-width:260px;box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .2s;}
+.dropdown.open .drop-menu{opacity:1;transform:translateY(0);pointer-events:auto;}
+.drop-header{font-size:10px;letter-spacing:.1em;color:var(--muted);padding:12px 16px 6px;text-transform:uppercase;}
+.drop-item{display:block;padding:12px 16px;text-decoration:none;color:rgba(255,255,255,.75);font-size:13px;border-top:1px solid var(--border);transition:background .15s,color .15s;}
+.drop-item:hover{background:rgba(51,102,255,.15);color:var(--white);}
+.drop-item .di-title{font-weight:600;margin-bottom:2px;}
+.drop-item .di-sub{font-size:11px;color:var(--muted);}
 
 /* ── HERO ── */
 .hero{padding:72px 28px 56px;max-width:820px;margin:0 auto;}
@@ -110,9 +124,36 @@ footer{padding:40px 28px;text-align:center;}
 <body>
 
 <header>
-  <div class="logo">KOREIT <span>한국토지신탁</span></div>
-  <div class="corp-badge">Best Practice · 인허가 위험 관리</div>
+  <a href="https://www.koreit.co.kr/main.html" class="logo" target="_blank" rel="noopener">KOREIT <span>한국토지신탁</span></a>
+
+  <div class="dropdown" id="dropdown">
+    <button class="corp-badge" onclick="toggleDropdown()">
+      Best Practice · 인허가 위험 관리
+      <span class="arrow">▼</span>
+    </button>
+    <div class="drop-menu">
+      <div class="drop-header">Case Studies</div>
+      <a class="drop-item" href="https://koreit-case.github.io/jangmi/" target="_blank" rel="noopener">
+        <div class="di-title">여의도 장미 아파트 재건축</div>
+        <div class="di-sub">일조권 검토 추진 경과 · 인허가 위험 관리</div>
+      </a>
+      <a class="drop-item" href="https://koreit-case.github.io/yongwoon/" target="_blank" rel="noopener">
+        <div class="di-title">대전 용운주공 재건축</div>
+        <div class="di-sub">사업성 분석 · 인허가 위험 관리</div>
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+function toggleDropdown(){
+  document.getElementById('dropdown').classList.toggle('open');
+}
+document.addEventListener('click', function(e){
+  const dd = document.getElementById('dropdown');
+  if(!dd.contains(e.target)) dd.classList.remove('open');
+});
+</script>
 
 <!-- HERO -->
 <section class="hero">
