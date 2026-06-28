@@ -5,335 +5,581 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>여의도 장미 아파트 재건축 — 한국토지신탁</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#0A111F;--navy2:#111D38;--navy3:#0F1829;
-  --blue:#3366FF;--blue-l:#7AAEFF;
-  --gold:#FFD580;--green:#4DC9A0;--red:#E84040;
-  --white:#fff;--muted:#88A0BB;--border:rgba(255,255,255,0.1);
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink: #0F1923;
+  --ink2: #1E2D3D;
+  --cream: #F5F1EA;
+  --cream2: #EDE8DF;
+  --blue: #1B4FD8;
+  --blue-light: #4B7BF5;
+  --green: #0D8A6A;
+  --red: #C0392B;
+  --gold: #C49A2E;
+  --gray: #6B7280;
+  --border: #DDD8CE;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--navy);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:16px;line-height:1.7;}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-/* ── HEADER ── */
-header{background:var(--navy3);border-bottom:1px solid var(--border);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.logo{font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--blue-l);text-decoration:none;display:inline-flex;align-items:center;}
-.logo:hover{color:#a0c0ff;}
-.logo span{color:var(--muted);font-weight:400;margin-left:8px;font-size:13px;}
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(245,241,234,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 32px; height: 32px; background: var(--ink);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+}
+.logo-mark span { color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: -0.5px; }
+.logo-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.header-nav { display: flex; gap: 8px; }
+.header-nav a {
+  font-size: 12px; color: var(--gray); text-decoration: none;
+  padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px;
+  transition: all 0.2s;
+}
+.header-nav a:hover { color: var(--ink); border-color: var(--ink); }
+.header-nav a.active { color: var(--ink); border-color: var(--ink); background: var(--cream2); }
 
-/* ── DROPDOWN ── */
-.dropdown{position:relative;}
-.corp-badge{font-size:12px;padding:4px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;background:transparent;transition:border-color .2s,color .2s;}
-.corp-badge:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.85);}
-.corp-badge .arrow{font-size:9px;transition:transform .2s;}
-.dropdown.open .corp-badge .arrow{transform:rotate(180deg);}
-.drop-menu{position:absolute;right:0;top:calc(100% + 10px);background:#1A2640;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-width:260px;box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .2s;}
-.dropdown.open .drop-menu{opacity:1;transform:translateY(0);pointer-events:auto;}
-.drop-header{font-size:10px;letter-spacing:.1em;color:var(--muted);padding:12px 16px 6px;text-transform:uppercase;}
-.drop-item{display:block;padding:12px 16px;text-decoration:none;color:rgba(255,255,255,.75);font-size:13px;border-top:1px solid var(--border);transition:background .15s,color .15s;}
-.drop-item:hover{background:rgba(51,102,255,.15);color:var(--white);}
-.drop-item .di-title{font-weight:600;margin-bottom:2px;}
-.drop-item .di-sub{font-size:11px;color:var(--muted);}
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+  background: var(--ink);
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; position: relative;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 400; line-height: 1.1;
+  color: white; max-width: 700px; margin-bottom: 24px;
+  position: relative;
+}
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.5);
+  max-width: 500px; line-height: 1.8; margin-bottom: 56px;
+  position: relative;
+}
+.hero-kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.08);
+  border-radius: 12px; overflow: hidden;
+  position: relative;
+}
+.h-kpi {
+  background: rgba(255,255,255,0.04);
+  padding: 24px 20px;
+}
+.h-kpi .val {
+  font-size: 28px; font-weight: 700; line-height: 1;
+  margin-bottom: 6px;
+}
+.h-kpi .lbl { font-size: 12px; color: rgba(255,255,255,0.35); }
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 48px;
+  font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em;
+  display: flex; align-items: center; gap: 8px;
+}
+.scroll-hint::before {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: rgba(255,255,255,0.2);
+}
 
-/* ── HERO ── */
-.hero{padding:72px 28px 56px;max-width:820px;margin:0 auto;}
-.hero-tag{display:inline-block;font-size:12px;padding:4px 14px;border:1px solid rgba(51,102,255,.4);background:rgba(51,102,255,.1);border-radius:20px;color:var(--blue-l);margin-bottom:22px;letter-spacing:.05em;}
-.hero h1{font-size:clamp(26px,5vw,44px);font-weight:700;line-height:1.2;margin-bottom:14px;}
-.hero h1 span{color:var(--blue-l);}
-.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.8;margin-bottom:32px;}
-.hero-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;}
-.hero-kpi{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:16px;}
-.hero-kpi .val{font-size:22px;font-weight:700;margin-bottom:4px;}
-.hero-kpi .lbl{font-size:12px;color:var(--muted);}
+/* SECTION COMMON */
+.section-divider { height: 1px; background: var(--border); }
+.sec { padding: 80px 48px; }
+.sec-inner { max-width: 880px; margin: 0 auto; }
+.sec-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+}
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  color: var(--ink); margin-bottom: 40px; line-height: 1.2;
+}
 
-/* ── SECTIONS ── */
-.sec{padding:56px 28px;max-width:820px;margin:0 auto;}
-.sec-tag{font-size:12px;color:var(--blue-l);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
-.sec-title{font-size:22px;font-weight:700;margin-bottom:28px;}
-.divider{border:none;border-top:1px solid var(--border);margin:0;}
+/* WHY 일조권 */
+.why-section { background: white; }
+.challenge-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  margin-bottom: 24px;
+}
+.ch-card { background: white; padding: 28px 24px; }
+.ch-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: var(--cream); display: flex; align-items: center;
+  justify-content: center; font-size: 18px; margin-bottom: 16px;
+}
+.ch-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+.ch-card p { font-size: 13px; color: var(--gray); line-height: 1.8; }
+.ch-highlight {
+  background: #FEF2F2; border: 1px solid #FECACA;
+  border-radius: 10px; padding: 20px 24px;
+  font-size: 14px; color: var(--ink); line-height: 1.8;
+}
+.ch-highlight strong { color: var(--red); }
 
-/* ── CHALLENGE CARDS ── */
-.challenge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:28px;}
-.ch-card{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:20px;}
-.ch-card .icon{font-size:22px;margin-bottom:10px;}
-.ch-card h4{font-size:15px;font-weight:600;margin-bottom:6px;}
-.ch-card p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;}
-.ch-highlight{background:rgba(232,64,64,.08);border:1px solid rgba(232,64,64,.25);border-radius:10px;padding:18px 20px;font-size:14px;color:rgba(255,255,255,.8);line-height:1.8;}
-.ch-highlight strong{color:#FF8080;}
+/* TIMELINE */
+.timeline-section { background: var(--cream); }
+.tl-list { display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 0; position: relative;
+}
+.tl-item:last-child .tl-line { display: none; }
+.tl-left {
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 4px;
+}
+.tl-dot-wrap { position: relative; z-index: 1; margin-bottom: 4px; }
+.tl-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: white;
+  flex-shrink: 0;
+}
+.dot-red { background: var(--red); }
+.dot-gold { background: var(--gold); }
+.dot-green { background: var(--green); }
+.tl-line {
+  flex: 1; width: 2px; background: var(--border);
+  margin: 4px 0; min-height: 40px;
+}
+.tl-date {
+  font-size: 11px; font-weight: 600; color: var(--gray);
+  text-align: center; padding-top: 10px;
+  letter-spacing: 0.02em; line-height: 1.4;
+}
+.tl-body { padding: 0 0 40px 24px; }
+.tl-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}
+.tl-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+.badge {
+  font-size: 11px; padding: 2px 10px; border-radius: 20px;
+  font-weight: 600; white-space: nowrap;
+}
+.badge-red { background: #FEE2E2; color: var(--red); }
+.badge-gold { background: #FEF3C7; color: #92400E; }
+.badge-green { background: #D1FAE5; color: #065F46; }
+.tl-desc { font-size: 14px; color: var(--gray); line-height: 1.8; }
+.tl-desc strong { color: var(--ink); font-weight: 600; }
 
-/* ── TIMELINE ── */
-.timeline{position:relative;margin-top:24px;}
-.timeline::before{content:'';position:absolute;left:16px;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,var(--blue),rgba(51,102,255,.1));}
-.tl-item{display:flex;gap:24px;margin-bottom:28px;position:relative;}
-.tl-dot{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:2px solid var(--navy);position:relative;z-index:1;}
-.dot-red{background:var(--red);}
-.dot-gold{background:var(--gold);}
-.dot-green{background:var(--green);}
-.tl-body{flex:1;padding-top:4px;}
-.tl-date{font-size:12px;color:var(--muted);margin-bottom:4px;letter-spacing:.04em;}
-.tl-title{font-size:15px;font-weight:600;margin-bottom:6px;}
-.tl-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7;}
-.badge{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600;margin-left:8px;vertical-align:middle;}
-.badge-red{background:rgba(232,64,64,.2);color:#FF8080;border:1px solid rgba(232,64,64,.3);}
-.badge-gold{background:rgba(255,213,128,.2);color:var(--gold);border:1px solid rgba(255,213,128,.3);}
-.badge-green{background:rgba(77,201,160,.2);color:var(--green);border:1px solid rgba(77,201,160,.3);}
+/* SOLUTION */
+.solution-section { background: white; }
+.solution-box {
+  background: var(--ink); border-radius: 16px;
+  padding: 40px 36px; margin-bottom: 24px;
+}
+.sol-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.solution-box h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  color: white; margin-bottom: 16px; line-height: 1.2;
+}
+.solution-box p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; }
+.sol-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.08);
+  border-radius: 10px; overflow: hidden; margin-top: 28px;
+}
+.sol-step { background: rgba(255,255,255,0.04); padding: 20px 16px; }
+.sol-step .s-num {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+  color: var(--gold); margin-bottom: 10px;
+}
+.sol-step p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
 
-/* ── SOLUTION SPOTLIGHT ── */
-.solution-box{background:rgba(51,102,255,.12);border:1px solid rgba(51,102,255,.35);border-radius:14px;padding:28px;margin:24px 0;}
-.solution-box .sol-tag{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.06em;margin-bottom:10px;}
-.solution-box h3{font-size:20px;font-weight:700;margin-bottom:12px;}
-.solution-box p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;}
-.sol-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px;}
-.sol-step{background:rgba(255,255,255,.05);border-radius:8px;padding:16px;}
-.sol-step .num{font-size:11px;color:var(--blue-l);font-weight:700;margin-bottom:6px;}
-.sol-step p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;}
+/* PARADIGM */
+.paradigm-section { background: var(--cream); }
+.paradigm {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 16px; align-items: center;
+}
+.par-box { border-radius: 12px; padding: 28px 24px; }
+.par-old { background: white; border: 1px solid var(--border); }
+.par-new { background: var(--ink); }
+.par-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.par-old .par-label { color: var(--gray); }
+.par-new .par-label { color: var(--gold); }
+.par-flow { font-size: 14px; line-height: 2.2; }
+.par-old .par-flow { color: var(--gray); }
+.par-new .par-flow { color: rgba(255,255,255,0.7); }
+.fail { color: var(--red); font-weight: 600; }
+.pass { color: #2ECC9A; font-weight: 600; }
+.par-arrow {
+  font-size: 32px; color: var(--blue);
+  display: flex; align-items: center;
+}
 
-/* ── PARADIGM SHIFT ── */
-.paradigm{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin-top:24px;}
-.par-box{border-radius:10px;padding:20px;}
-.par-old{background:rgba(255,255,255,.04);border:1px solid var(--border);}
-.par-new{background:rgba(51,102,255,.1);border:1px solid rgba(51,102,255,.3);}
-.par-label{font-size:11px;font-weight:600;letter-spacing:.06em;margin-bottom:10px;}
-.par-old .par-label{color:var(--muted);}
-.par-new .par-label{color:var(--blue-l);}
-.par-flow{font-size:13px;line-height:1.9;}
-.par-old .par-flow{color:rgba(255,255,255,.55);}
-.par-new .par-flow{color:rgba(255,255,255,.85);}
-.par-flow .fail{color:#FF8080;}
-.par-flow .pass{color:var(--green);}
-.par-arrow{font-size:28px;color:var(--blue);font-weight:300;}
+/* QUOTE */
+.quote-section { background: var(--ink2); padding: 100px 48px; }
+.quote-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.quote-mark {
+  font-family: 'DM Serif Display', serif;
+  font-size: 80px; color: var(--gold);
+  line-height: 0.6; margin-bottom: 24px; opacity: 0.3;
+}
+blockquote {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: white; line-height: 1.7; font-style: italic; margin-bottom: 32px;
+}
+cite { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: rgba(255,255,255,0.3); font-style: normal; }
 
-/* ── QUOTE ── */
-.quote-sec{padding:56px 28px;background:var(--navy3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-blockquote{max-width:700px;margin:0 auto;border-left:3px solid var(--blue);padding:20px 24px;background:rgba(51,102,255,.06);border-radius:0 8px 8px 0;}
-blockquote p{font-size:16px;color:rgba(255,255,255,.85);line-height:1.8;}
-blockquote cite{display:block;margin-top:12px;font-size:13px;color:var(--muted);font-style:normal;}
+/* FOOTER */
+footer { background: var(--ink); padding: 48px; }
+.footer-inner {
+  max-width: 880px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 24px; flex-wrap: wrap;
+  font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.8;
+}
+footer strong { color: rgba(255,255,255,0.5); }
 
-/* ── FOOTER ── */
-footer{padding:40px 28px;text-align:center;}
-.disclaimer{max-width:820px;margin:0 auto;padding:24px;background:rgba(255,255,255,.03);border-radius:8px;font-size:12px;color:rgba(255,255,255,.3);line-height:1.8;}
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 
-@media(max-width:600px){
-  .sol-grid{grid-template-columns:1fr;}
-  .paradigm{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
-  .par-arrow{transform:rotate(90deg);}
+@media (max-width: 680px) {
+  header { padding: 0 20px; }
+  .header-nav { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-kpis { grid-template-columns: 1fr 1fr; }
+  .sec { padding: 56px 24px; }
+  .challenge-grid { grid-template-columns: 1fr; }
+  .sol-steps { grid-template-columns: 1fr 1fr; }
+  .paradigm { grid-template-columns: 1fr; }
+  .par-arrow { transform: rotate(90deg); justify-content: center; }
+  .tl-item { grid-template-columns: 80px 1fr; }
+  footer { padding: 32px 24px; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="https://www.koreit.co.kr/main.html" class="logo" target="_blank" rel="noopener">KOREIT <span>한국토지신탁</span></a>
-
-  <div class="dropdown" id="dropdown">
-    <button class="corp-badge" onclick="toggleDropdown()">
-      Best Practice · 인허가 위험 관리
-      <span class="arrow">▼</span>
-    </button>
-    <div class="drop-menu">
-      <div class="drop-header">Case Studies</div>
-      <a class="drop-item" href="https://koreit-case.github.io/jangmi/" target="_blank" rel="noopener">
-        <div class="di-title">여의도 장미 아파트 재건축</div>
-        <div class="di-sub">일조권 검토 추진 경과 · 인허가 위험 관리</div>
-      </a>
-      <a class="drop-item" href="https://koreit-case.github.io/yongwoon/" target="_blank" rel="noopener">
-        <div class="di-title">대전 용운주공 재건축</div>
-        <div class="di-sub">사업성 분석 · 인허가 위험 관리</div>
-      </a>
-    </div>
-  </div>
+  <a href="https://www.koreit.co.kr/main.html" class="logo" target="_blank" rel="noopener">
+    <div class="logo-mark"><span>KR</span></div>
+    <span class="logo-name">한국토지신탁</span>
+  </a>
+  <nav class="header-nav">
+    <a href="https://koreit-case.github.io/jangmi/" class="active">여의도 장미</a>
+    <a href="https://koreit-case.github.io/yongwoon/">대전 용운주공</a>
+  </nav>
 </header>
-
-<script>
-function toggleDropdown(){
-  document.getElementById('dropdown').classList.toggle('open');
-}
-document.addEventListener('click', function(e){
-  const dd = document.getElementById('dropdown');
-  if(!dd.contains(e.target)) dd.classList.remove('open');
-});
-</script>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">여의도 장미 아파트 재건축 · 일조권 검토 추진 경과</div>
-  <h1>대지 북쪽에 인접해있는 학교—<br><span>그리고 한국토지신탁의 돌파구</span></h1>
-  <p class="hero-sub">일조권 검토는 재건축 사업에서 가장 먼저, 가장 정밀하게 다뤄야 할 항목입니다. 여의도 장미 아파트는 그 사실을 온몸으로 증명한 사업입니다.</p>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-eyebrow">Case Study · 여의도 장미 아파트 재건축</div>
+  <h1>3번의 사업불가 판정,<br><em>한토신의 돌파구</em></h1>
+  <p class="hero-sub">일조권은 설계 이후 검토하는 항목이 아닙니다. 여의도 장미 아파트는 그 사실을 3개월간의 치열한 검토로 증명한 사업입니다.</p>
   <div class="hero-kpis">
-    <div class="hero-kpi"><div class="val" style="color:#E84040;">3회</div><div class="lbl">연속 사업불가 판정</div></div>
-    <div class="hero-kpi"><div class="val" style="color:var(--gold);">10m</div><div class="lbl">한토신 그리드 분석 단위</div></div>
-    <div class="hero-kpi"><div class="val" style="color:var(--green);">3개월</div><div class="lbl">문제 발견 → 해결 완료</div></div>
-    <div class="hero-kpi"><div class="val">374세대</div><div class="lbl">최종 확정 공급 규모</div></div>
+    <div class="h-kpi">
+      <div class="val" style="color:#F87171;">3회</div>
+      <div class="lbl">연속 사업불가 판정</div>
+    </div>
+    <div class="h-kpi">
+      <div class="val" style="color:var(--gold);">10m</div>
+      <div class="lbl">한토신 그리드 분석 단위</div>
+    </div>
+    <div class="h-kpi">
+      <div class="val" style="color:#34D399;">3개월</div>
+      <div class="lbl">문제 발견 → 해결 완료</div>
+    </div>
+    <div class="h-kpi">
+      <div class="val" style="color:white;" data-count="374" data-suffix="세대">0세대</div>
+      <div class="lbl">최종 확정 공급 규모</div>
+    </div>
   </div>
+  <div class="scroll-hint" aria-hidden="true">스크롤</div>
 </section>
-<hr class="divider">
+
+<div class="section-divider"></div>
 
 <!-- WHY 일조권 -->
-<section class="sec">
-  <div class="sec-tag">왜 일조권인가</div>
-  <div class="sec-title">재건축 시작 전 반드시 검토해야 할 단 하나의 항목</div>
-  <div class="challenge-grid">
-    <div class="ch-card">
-      <div class="icon">🏫</div>
-      <h4>여의도 장미 SITE 현황</h4>
-      <p>여의도고등학교·여의도중학교·여의도초등학교가 사업부지를 인접하여 둘러싸고 있어 교육환경영향평가 일조 기준 충족이 필수입니다.</p>
+<section class="sec why-section">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">왜 일조권인가</div>
+    <div class="sec-title reveal">재건축 시작 전<br>반드시 검토해야 할 단 하나의 항목</div>
+    <div class="challenge-grid reveal">
+      <div class="ch-card">
+        <div class="ch-icon">🏫</div>
+        <h4>사이트 현황</h4>
+        <p>여의도고·여의도중·여의도초가 사업부지를 인접하여 둘러싸고 있어 교육환경영향평가 일조 기준 충족이 필수입니다.</p>
+      </div>
+      <div class="ch-card">
+        <div class="ch-icon">⚖️</div>
+        <h4>근거 법령</h4>
+        <p>「교육환경평가서 작성 등에 관한 고시」에 따라 동지 기준 오전 8시~오후 4시 중 총 4시간, 연속 2시간 일조 시간 확보가 필요합니다.</p>
+      </div>
+      <div class="ch-card">
+        <div class="ch-icon">📉</div>
+        <h4>사업성에 미치는 영향</h4>
+        <p>일조 기준 미충족 시 건물 높이를 대폭 낮춰야 하며, 세대수 감소·용적률 저하로 직결되어 사업성 자체를 위협합니다.</p>
+      </div>
     </div>
-    <div class="ch-card">
-      <div class="icon">⚖️</div>
-      <h4>근거 법령</h4>
-      <p>「교육환경평가서 작성 등에 관한 고시」에 따라 동지 기준으로 오전 8시~오후 4시 중 총 4시간, 연속 2시간 일조 시간 확보가 필요합니다.</p>
+    <div class="ch-highlight reveal">
+      <strong>핵심 포인트:</strong> 일조권은 설계 "이후" 검토하는 항목이 아닙니다. 설계를 완료한 후 일조권 검토를 하면 깎아야 할 것은 설계가 아니라 주민 여러분의 "기대"입니다. 이것이 한국토지신탁이 사업 착수 직후 가장 먼저 일조권 분석에 나선 이유입니다.
     </div>
-    <div class="ch-card">
-      <div class="icon">🏗️</div>
-      <h4>사업성에 미치는 영향</h4>
-      <p>일조 기준 미충족 시 건물 높이를 대폭 낮춰야 하며, 이는 세대수 감소·용적률 저하로 직결되어 사업성 자체를 위협합니다.</p>
-    </div>
-  </div>
-  <div class="ch-highlight">
-    <strong>핵심 포인트:</strong> 일조권은 설계 "이후" 검토하는 항목이 아닙니다. 설계를 완료한 후 일조권 검토를 하게되면 깎아야되는 것은 설계가 아니라 주민 여러분의 "기대"입니다. 이것이 한국토지신탁이 사업 착수 직후 가장 먼저 일조권 분석에 나선 이유입니다.
   </div>
 </section>
-<hr class="divider">
+
+<div class="section-divider"></div>
 
 <!-- TIMELINE -->
-<section class="sec">
-  <div class="sec-tag">치열했던 검토 과정</div>
-  <div class="sec-title">3개월간의 기록</div>
-  <div class="timeline">
+<section class="sec timeline-section">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">치열했던 검토 과정</div>
+    <div class="sec-title reveal">3개월간의 기록</div>
+    <div class="tl-list reveal">
 
-    <div class="tl-item">
-      <div class="tl-dot dot-red">✗</div>
-      <div class="tl-body">
-        <div class="tl-date">'25.10.30</div>
-        <div class="tl-title">A사 최초 설계도서 수령 → 일조권 검토 의뢰<span class="badge badge-red">사업불가</span></div>
-        <div class="tl-desc">최초 설계안 기준으로 일조권 전문업체에 검토를 의뢰했습니다. 검토 결과, 여의도고등학교 일조 수인한도를 충족하기 위해 전체 동의 층수를 5~16F 수준으로 대폭 낮춰야 한다는 결론이 나왔습니다. 사업 진행 불가 판정.</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap"><div class="tl-dot dot-red">✗</div></div>
+          <div class="tl-line"></div>
+          <div class="tl-date">'25.10.30</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-title">A사 최초 설계도서 수령 → 일조권 검토 의뢰</span>
+            <span class="badge badge-red">사업불가</span>
+          </div>
+          <p class="tl-desc">최초 설계안 기준 일조권 전문업체 검토 결과, 여의도고등학교 일조 수인한도 충족을 위해 전체 동의 층수를 <strong>5~16F 수준으로 대폭 낮춰야</strong> 한다는 결론. 사업 진행 불가 판정.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="tl-item">
-      <div class="tl-dot dot-red">✗</div>
-      <div class="tl-body">
-        <div class="tl-date">'25.11.25 ~ '25.12.09</div>
-        <div class="tl-title">B사·C사 대안설계 추가 검토 (2회)<span class="badge badge-red">3회 연속 사업불가</span></div>
-        <div class="tl-desc">A사를 포함한 총 3개 설계사에 모든 가능한 대안을 요청했습니다. 배치 변경, 층수 조정, 타워형 검토 등 다양한 시도가 이뤄졌으나 B사 1차('25.12.05), C사 1차('25.12.09) 모두 일조 기준 미충족으로 사업불가 판정. 여의도고등학교에 대한 정밀 분석에서 기준 미달이 반복됐습니다.</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap"><div class="tl-dot dot-red">✗</div></div>
+          <div class="tl-line"></div>
+          <div class="tl-date">'25.11~12</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-title">B사·C사 대안설계 추가 검토 2회</span>
+            <span class="badge badge-red">3회 연속 사업불가</span>
+          </div>
+          <p class="tl-desc">배치 변경, 층수 조정, 타워형 검토 등 모든 대안을 시도했으나 B사 1차('25.12.05), C사 1차('25.12.09) 모두 일조 기준 미충족. 여의도고등학교 정밀 분석에서 기준 미달이 반복됐습니다.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="tl-item">
-      <div class="tl-dot dot-gold">⚡</div>
-      <div class="tl-body">
-        <div class="tl-date">'25.12.09</div>
-        <div class="tl-title">한국토지신탁 독자 솔루션 제시<span class="badge badge-gold">한토신 SOLUTION</span></div>
-        <div class="tl-desc">설계사에게 설계안을 요구하고 검토하는 기존 방식에서 완전히 벗어났습니다. 한국토지신탁이 직접 사업 대상지 전체를 <strong>10m × 10m 그리드로 분할</strong>하여 각 구역에서 일조 기준을 충족하면서 건축 가능한 최대 높이값을 산출, 이 수치를 설계사에 직접 제공했습니다. 설계가 분석을 따라가는 것이 아니라, 분석이 설계를 이끄는 방식으로의 전환.</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap"><div class="tl-dot dot-gold">⚡</div></div>
+          <div class="tl-line"></div>
+          <div class="tl-date">'25.12.09</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-title">한국토지신탁 독자 솔루션 제시</span>
+            <span class="badge badge-gold">한토신 SOLUTION</span>
+          </div>
+          <p class="tl-desc">기존 방식을 완전히 벗어났습니다. 사업 대상지 전체를 <strong>10m × 10m 그리드로 분할</strong>하여 각 구역에서 일조 기준을 충족하면서 건축 가능한 최대 높이값을 직접 산출, 설계사에 제공했습니다. 분석이 설계를 이끄는 방식으로의 전환.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="tl-item">
-      <div class="tl-dot dot-green">○</div>
-      <div class="tl-body">
-        <div class="tl-date">'26.01.08</div>
-        <div class="tl-title">C사 2차 설계 일조권 검토 결과<span class="badge badge-green">사업성 양호</span></div>
-        <div class="tl-desc">한토신이 제공한 높이값 데이터를 반영한 C사 2차 설계 검토 결과, 처음으로 "다소 미흡하나 사업성 양호" 판정이 나왔습니다. 일부 세대 조정(−11세대)은 필요했으나 사업 추진이 가능한 수준으로 개선됐습니다. 즉시 3차 설계 및 상세 도서 작성에 착수.</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap"><div class="tl-dot dot-green">○</div></div>
+          <div class="tl-line"></div>
+          <div class="tl-date">'26.01.08</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-title">C사 2차 설계 일조권 검토 결과</span>
+            <span class="badge badge-green">사업성 양호</span>
+          </div>
+          <p class="tl-desc">한토신 높이값 데이터를 반영한 결과, 처음으로 <strong>"다소 미흡하나 사업성 양호"</strong> 판정. 일부 세대 조정(−11세대)은 필요했으나 사업 추진 가능 수준으로 개선. 즉시 3차 설계 착수.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="tl-item">
-      <div class="tl-dot dot-green">✓</div>
-      <div class="tl-body">
-        <div class="tl-date">'26.01.29</div>
-        <div class="tl-title">C사 4차(최종) 설계 확정<span class="badge badge-green">사업 가능 확정</span></div>
-        <div class="tl-desc">타워형 배치를 반영한 C사 4차 최종 설계가 일조 기준과 사업성을 모두 충족하며 확정됐습니다. 이 설계안을 기준으로 사업성 분석(비례율 106.90%)이 완료되고 토지등소유자 설명회가 진행됐습니다.</div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap"><div class="tl-dot dot-green">✓</div></div>
+          <div class="tl-date">'26.01.29</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-head">
+            <span class="tl-title">C사 4차(최종) 설계 확정</span>
+            <span class="badge badge-green">사업 가능 확정</span>
+          </div>
+          <p class="tl-desc">타워형 배치를 반영한 최종 설계가 일조 기준과 사업성을 모두 충족하며 확정. 사업성 분석(<strong>비례율 106.90%</strong>) 완료 및 토지등소유자 설명회 진행.</p>
+        </div>
       </div>
-    </div>
 
-  </div>
-</section>
-<hr class="divider">
-
-<!-- SOLUTION SPOTLIGHT -->
-<section class="sec">
-  <div class="sec-tag">한토신의 솔루션</div>
-  <div class="sec-title">왜 설계사에서는 대안을 제시하지 못했나</div>
-
-  <div class="solution-box">
-    <div class="sol-tag">KOREIT INNOVATION</div>
-    <h3>사업지를 10m × 10m 그리드로 쪼개어보자</h3>
-    <p>통상 설계사는 신축 아파트로 인해 생기는 그림자의 이동 방향을 개략적으로 검토합니다. 한국토지신탁은 이것이 부족하다는 것을 알고 있었습니다. 일조권 전문 검토업체는 일조 침해를 받는 건물을 수많은 지점으로 분리해서 분석합니다. 여의도고등학교만 해도 388개 지점입니다.</p>
-    <div class="sol-grid">
-      <div class="sol-step">
-        <div class="num">STEP 1</div>
-        <p>사업 대상지 전체를 10m × 10m 격자로 분할하여 좌표별 분석 구역 설정</p>
-      </div>
-      <div class="sol-step">
-        <div class="num">STEP 2</div>
-        <p>각 구역에서 인근 학교 일조 기준(동지 기준 4시간/연속 2시간)을 충족하는 최대 건축 가능 높이값 산출</p>
-      </div>
-      <div class="sol-step">
-        <div class="num">STEP 3</div>
-        <p>구역별 높이 제약 데이터를 수치 형태로 설계사에 직접 제공 → 설계의 출발점이 됨</p>
-      </div>
-      <div class="sol-step">
-        <div class="num">RESULT</div>
-        <p>설계사는 높이값 내에서 최적 배치를 설계 → 검토-수정 반복 없이 사업가능 설계안 도출</p>
-      </div>
-      .
-
-
-      
     </div>
   </div>
 </section>
-<hr class="divider">
 
-<!-- PARADIGM SHIFT -->
-<section class="sec">
-  <div class="sec-tag">패러다임의 전환</div>
-  <div class="sec-title">무엇이 달랐나</div>
-  <div class="paradigm">
-    <div class="par-box par-old">
-      <div class="par-label">기존 방식</div>
-      <div class="par-flow">
-        설계안 완성<br>
-        → 일조권 검토<br>
-        → <span class="fail">사업불가 판정</span><br>
-        → 설계 수정<br>
-        → 재검토<br>
-        → <span class="fail">또 사업불가…</span>
-      </div>
-    </div>
-    <div class="par-arrow">→</div>
-    <div class="par-box par-new">
-      <div class="par-label">한국토지신탁 방식</div>
-      <div class="par-flow">
-        일조권 분석 먼저<br>
-        → 구역별 높이 산출<br>
-        → 설계 가이드 제공<br>
-        → 가이드 기반 설계<br>
-        → <span class="pass">사업성 양호 확인</span><br>
-        → <span class="pass">최종 설계 확정 ✓</span>
+<div class="section-divider"></div>
+
+<!-- SOLUTION -->
+<section class="sec solution-section">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">한토신의 솔루션</div>
+    <div class="sec-title reveal">왜 설계사들은 대안을 찾지 못했나</div>
+    <div class="solution-box reveal">
+      <div class="sol-tag">KOREIT INNOVATION</div>
+      <h3>사업지를 10m × 10m<br>그리드로 쪼개어보자</h3>
+      <p>통상 설계사는 신축 아파트로 인해 생기는 그림자 이동 방향을 개략적으로 검토합니다. 한국토지신탁은 이것이 부족하다는 것을 알고 있었습니다. 일조권 전문 검토업체는 일조 침해를 받는 건물을 수많은 지점으로 분리해서 분석합니다. 여의도고등학교만 해도 388개 지점입니다.</p>
+      <div class="sol-steps">
+        <div class="sol-step">
+          <div class="s-num">STEP 01</div>
+          <p>사업 대상지 전체를 10m × 10m 격자로 분할하여 좌표별 분석 구역 설정</p>
+        </div>
+        <div class="sol-step">
+          <div class="s-num">STEP 02</div>
+          <p>각 구역에서 인근 학교 일조 기준(동지 기준 4시간/연속 2시간)을 충족하는 최대 높이값 산출</p>
+        </div>
+        <div class="sol-step">
+          <div class="s-num">STEP 03</div>
+          <p>구역별 높이 제약 데이터를 수치 형태로 설계사에 직접 제공 → 설계의 출발점</p>
+        </div>
+        <div class="sol-step">
+          <div class="s-num">RESULT</div>
+          <p>설계사가 높이값 내 최적 배치를 설계 → 검토-수정 반복 없이 사업가능 설계안 도출</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<hr class="divider">
+
+<div class="section-divider"></div>
+
+<!-- PARADIGM -->
+<section class="sec paradigm-section">
+  <div class="sec-inner">
+    <div class="sec-eyebrow reveal">패러다임의 전환</div>
+    <div class="sec-title reveal">무엇이 달랐나</div>
+    <div class="paradigm reveal">
+      <div class="par-box par-old">
+        <div class="par-label">기존 방식</div>
+        <div class="par-flow">
+          설계안 완성<br>
+          → 일조권 검토<br>
+          → <span class="fail">사업불가 판정</span><br>
+          → 설계 수정<br>
+          → 재검토<br>
+          → <span class="fail">또 사업불가…</span>
+        </div>
+      </div>
+      <div class="par-arrow">→</div>
+      <div class="par-box par-new">
+        <div class="par-label">한국토지신탁 방식</div>
+        <div class="par-flow">
+          일조권 분석 먼저<br>
+          → 구역별 높이 산출<br>
+          → 설계 가이드 제공<br>
+          → 가이드 기반 설계<br>
+          → <span class="pass">사업성 양호 확인</span><br>
+          → <span class="pass">최종 설계 확정 ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- QUOTE -->
-<section class="quote-sec">
-  <blockquote>
-    <p>"성공적인 사업의 핵심은 '정확한 시작'입니다. 여의도 장미 아파트 재건축은 일조권이라는 가장 어려운 관문을 가장 먼저, 가장 치열하게 검토했습니다. 다른 시행자였다면 이 문제를 모른 채 설계를 시작했을 수 있습니다. 성공적인 재건축을 위해 한국토지신탁이 함께 해야 하는 이유가 바로 여기 있습니다."</p>
+<section class="quote-section">
+  <div class="quote-inner reveal">
+    <div class="quote-mark" aria-hidden="true">"</div>
+    <blockquote>
+      "성공적인 사업의 핵심은 '정확한 시작'입니다. 여의도 장미 아파트 재건축은 일조권이라는 가장 어려운 관문을 가장 먼저, 가장 치열하게 검토했습니다."
+    </blockquote>
     <cite>— 한국토지신탁 도시재생지원팀</cite>
-  </blockquote>
+  </div>
 </section>
 
 <footer>
-  <div class="disclaimer">
-    <p>한국토지신탁 준법감시인 심사필 제26-0011호 ('26.03.06.) · 사용일: '26.03.06.<br>
-    본 안내자료는 한국토지신탁의 자산이므로 무단 배포 및 전용을 금하고 신탁방식 정비사업에 대한 이해를 돕기 위한 설명 용도에 국한됩니다.<br>
-    사업진행과정에서 사업조건(인허가, 건축규모·설계의 변경, 분양가격 등)이 변경될 수 있습니다.<br>
-    <strong style="color:rgba(255,255,255,.5)">한국토지신탁 (KOREIT)</strong> · www.koreit.co.kr</p>
+  <div class="footer-inner">
+    <div>
+      <p>한국토지신탁 준법감시인 심사필 제26-0011호 ('26.03.06.) · 사용일: '26.03.06.</p>
+      <p>본 안내자료는 한국토지신탁의 자산이므로 무단 배포 및 전용을 금하고 신탁방식 정비사업에 대한 이해를 돕기 위한 설명 용도에 국한됩니다.</p>
+      <p>사업진행과정에서 사업조건(인허가, 건축규모·설계의 변경, 분양가격 등)이 변경될 수 있습니다.</p>
+    </div>
+    <div style="text-align:right; white-space:nowrap;">
+      <strong>한국토지신탁 (KOREIT)</strong><br>
+      www.koreit.co.kr
+    </div>
   </div>
 </footer>
 
+<script>
+// 카운트업
+function countUp(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(target * ease).toLocaleString() + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// 스크롤 reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    entry.target.querySelectorAll('[data-count]').forEach(countUp);
+    io.unobserve(entry.target);
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 히어로 카운트업
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero [data-count]').forEach(countUp);
+  }, 500);
+});
+</script>
 </body>
 </html>
