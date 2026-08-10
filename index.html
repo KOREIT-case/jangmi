@@ -20,6 +20,10 @@
   --gold: #C49A2E;
   --gray: #6B7280;
   --border: #DDD8CE;
+  /* 섹션 색 밴드 */
+  --paper: #FCFAF6;       /* 추진 경과 — 최고 명도 */
+  --tint: #EDF1FB;        /* 해법(개입) — 사례 악센트(블루) 연한 버전 */
+  --accent-deep: #12308A; /* 마감 인용 — 사례 악센트 딥 */
 }
 html { scroll-behavior: smooth; }
 body {
@@ -132,7 +136,7 @@ header {
 }
 
 /* WHY 일조권 */
-.why-section { background: white; }
+.why-section { background: var(--cream2); }
 .challenge-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px; background: var(--border);
@@ -155,7 +159,7 @@ header {
 .ch-highlight strong { color: var(--red); }
 
 /* TIMELINE */
-.timeline-section { background: var(--cream); }
+.timeline-section { background: var(--paper); }
 .tl-list { display: flex; flex-direction: column; gap: 0; }
 .tl-item {
   display: grid; grid-template-columns: 120px 1fr;
@@ -202,7 +206,7 @@ header {
 .tl-desc strong { color: var(--ink); font-weight: 600; }
 
 /* SOLUTION */
-.solution-section { background: white; }
+.solution-section { background: var(--tint); }
 .solution-box {
   background: var(--ink); border-radius: 16px;
   padding: 40px 36px; margin-bottom: 24px;
@@ -255,7 +259,7 @@ header {
 }
 
 /* QUOTE */
-.quote-section { background: var(--ink2); padding: 100px 48px; }
+.quote-section { background: var(--accent-deep); padding: 100px 48px; }
 .quote-inner { max-width: 720px; margin: 0 auto; text-align: center; }
 .quote-mark {
   font-family: 'DM Serif Display', serif;
