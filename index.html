@@ -4,307 +4,194 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>여의도 장미 아파트 재건축 — 한국토지신탁</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;900&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
+@font-face { font-family: 'KOAROO'; font-weight: 300; font-display: swap; src: url('fonts/KOAROO-Light.woff2') format('woff2'); }
+@font-face { font-family: 'KOAROO'; font-weight: 500; font-display: swap; src: url('fonts/KOAROO-Medium.woff2') format('woff2'); }
+@font-face { font-family: 'KOAROO'; font-weight: 700; font-display: swap; src: url('fonts/KOAROO-Bold.woff2') format('woff2'); }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --ink: #0F1923;
-  --ink2: #1E2D3D;
-  --cream: #F5F1EA;
-  --cream2: #EDE8DF;
-  --blue: #1B4FD8;
-  --blue-light: #4B7BF5;
-  --green: #0D8A6A;
-  --red: #C0392B;
-  --gold: #C49A2E;
-  --gray: #6B7280;
-  --border: #DDD8CE;
+  --navy: #224979;
+  --navy-90: #1A3A61;
+  --navy-60: #5B7BA4;
+  --navy-20: #D0DAE6;
+  --navy-10: #E9EEF4;
+  --green: #A7CD48;
+  --green-text: #5E7F1B;
+  --green-20: #E5F0C7;
+  --green-10: #F2F8E2;
+  --text: #3E3A39;
+  --text-2: #7A7876;
+  --text-3: #B5B3B0;
+  --border: #E6E8EB;
+  --bg: #F6F7F9;
+  --err-bg: #FBEAEA; --err-text: #9F2F2D;
+  --ok-bg: #EDF3E3;  --ok-text: #3F6B12;
+  --info-bg: #E9EEF4; --info-text: #224979;
 }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  overflow-x: hidden;
+  background: #FFFFFF; color: var(--text);
+  font-family: 'KOAROO', 'Pretendard', 'Noto Sans KR', sans-serif;
+  font-weight: 300; font-size: 16px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
+strong, b { font-weight: 500; }
+.mono { font-family: 'Geist Mono', 'JetBrains Mono', 'D2Coding', monospace; }
+
+/* CI divider: navy line + short green segment at right */
+.ci-line { position: relative; height: 2px; background: var(--navy); }
+.ci-line::after { content: ''; position: absolute; right: 0; top: 0; height: 2px; width: 14%; background: var(--green); }
 
 /* HEADER */
 header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(245,241,234,0.92);
-  backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100; background: #FFFFFF;
   border-bottom: 1px solid var(--border);
-  padding: 0 32px; height: 56px;
+  height: 60px; padding: 0 40px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-mark {
-  width: 32px; height: 32px; background: var(--ink);
-  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+.logo img { height: 30px; width: auto; display: block; }
+.nav { display: flex; gap: 28px; }
+.nav a {
+  font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none;
+  padding: 19px 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
 }
-.logo-mark span { color: var(--cream); font-size: 10px; font-weight: 700; letter-spacing: -0.5px; }
-.logo-name { font-size: 13px; font-weight: 700; color: var(--ink); }
-.logo-sub { font-size: 11px; color: var(--gray); font-weight: 400; }
-.logo-img { height: 30px; width: auto; display: block; }
-.header-nav { display: flex; gap: 8px; }
-.header-nav a {
-  font-size: 12px; color: var(--gray); text-decoration: none;
-  padding: 4px 12px; border: 1px solid var(--border); border-radius: 20px;
-  transition: all 0.2s;
-}
-.header-nav a:hover { color: var(--ink); border-color: var(--ink); }
-.header-nav a.active { color: var(--ink); border-color: var(--ink); background: var(--cream2); }
+.nav a:hover { color: var(--navy); }
+.nav a.active { color: var(--navy); border-bottom-color: var(--navy); }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 120px 48px 80px;
-  position: relative; overflow: hidden;
-  background: var(--ink);
+/* HERO (navy block — allowed for hero) */
+.hero { background: var(--navy); color: #FFFFFF; padding: 96px 40px 0; }
+.hero-inner { max-width: 960px; margin: 0 auto; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 500; letter-spacing: .08em; color: var(--green);
+  margin-bottom: 28px;
 }
-.hero-grid-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 20px; position: relative;
-}
+.eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--green); }
 .hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(36px, 5.5vw, 72px);
-  font-weight: 400; line-height: 1.1;
-  color: white; max-width: 700px; margin-bottom: 24px;
-  position: relative;
+  font-weight: 700; font-size: clamp(34px, 5vw, 60px); line-height: 1.15; letter-spacing: -0.02em;
+  max-width: 760px; margin-bottom: 22px;
 }
-.hero h1 em { font-style: normal; color: var(--gold); }
-.hero-sub {
-  font-size: 15px; color: rgba(255,255,255,0.5);
-  max-width: 500px; line-height: 1.8; margin-bottom: 56px;
-  position: relative;
-}
+.hero-sub { font-size: 17px; font-weight: 300; color: var(--navy-20); max-width: 560px; line-height: 1.7; margin-bottom: 64px; }
 .hero-kpis {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: rgba(255,255,255,0.08);
-  border-radius: 12px; overflow: hidden;
-  position: relative;
+  border-top: 1px solid rgba(255,255,255,.18);
 }
-.h-kpi {
-  background: rgba(255,255,255,0.04);
-  padding: 24px 20px;
-}
-.h-kpi .val {
-  font-size: 28px; font-weight: 700; line-height: 1;
-  margin-bottom: 6px;
-}
-.h-kpi .lbl { font-size: 12px; color: rgba(255,255,255,0.35); }
-.scroll-hint {
-  position: absolute; bottom: 32px; left: 48px;
-  font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em;
-  display: flex; align-items: center; gap: 8px;
-}
-.scroll-hint::before {
-  content: ''; display: block; width: 24px; height: 1px;
-  background: rgba(255,255,255,0.2);
-}
+.kpi { padding: 28px 24px 36px 0; border-right: 1px solid rgba(255,255,255,.12); }
+.kpi + .kpi { padding-left: 24px; }
+.kpi:last-child { border-right: 0; }
+.kpi .val { font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; margin-bottom: 10px; }
+.kpi .val.accent { color: var(--green); }
+.kpi .lbl { font-size: 13px; font-weight: 300; color: var(--navy-20); }
 
-/* SECTION COMMON */
-.section-divider { height: 1px; background: var(--border); }
-.sec { padding: 80px 48px; }
-.sec-inner { max-width: 880px; margin: 0 auto; }
-.sec-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
-}
-.sec-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(26px, 3.5vw, 40px);
-  color: var(--ink); margin-bottom: 40px; line-height: 1.2;
-}
+/* SECTIONS */
+.sec { padding: 96px 40px; }
+.sec.alt { background: var(--bg); }
+.sec-inner { max-width: 960px; margin: 0 auto; }
+.sec-head { margin-bottom: 48px; }
+.sec-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .08em; color: var(--green-text); margin-bottom: 12px; }
+.sec-title { font-size: clamp(26px, 3.2vw, 38px); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 20px; }
+.sec-head .ci-line { width: 96px; }
 
-/* WHY 일조권 */
-.why-section { background: white; }
-.challenge-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
-  margin-bottom: 24px;
+/* WHY */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px; }
+.card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 6px; padding: 32px 28px; }
+.card .num { font-size: 12px; font-weight: 500; letter-spacing: .06em; color: var(--green-text); margin-bottom: 18px; }
+.card h4 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card p { font-size: 14px; color: var(--text-2); line-height: 1.75; }
+.callout {
+  background: var(--navy-10); border-left: 3px solid var(--navy); border-radius: 0 6px 6px 0;
+  padding: 24px 28px; font-size: 15px; line-height: 1.8;
 }
-.ch-card { background: white; padding: 28px 24px; }
-.ch-icon {
-  width: 40px; height: 40px; border-radius: 8px;
-  background: var(--cream); display: flex; align-items: center;
-  justify-content: center; font-size: 18px; margin-bottom: 16px;
-}
-.ch-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
-.ch-card p { font-size: 13px; color: var(--gray); line-height: 1.8; }
-.ch-highlight {
-  background: #FEF2F2; border: 1px solid #FECACA;
-  border-radius: 10px; padding: 20px 24px;
-  font-size: 14px; color: var(--ink); line-height: 1.8;
-}
-.ch-highlight strong { color: var(--red); }
+.callout strong { color: var(--navy); }
 
 /* TIMELINE */
-.timeline-section { background: var(--cream); }
-.tl-list { display: flex; flex-direction: column; gap: 0; }
-.tl-item {
-  display: grid; grid-template-columns: 120px 1fr;
-  gap: 0; position: relative;
-}
-.tl-item:last-child .tl-line { display: none; }
-.tl-left {
-  display: flex; flex-direction: column; align-items: center;
-  padding-top: 4px;
-}
-.tl-dot-wrap { position: relative; z-index: 1; margin-bottom: 4px; }
-.tl-dot {
-  width: 36px; height: 36px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: white;
-  flex-shrink: 0;
-}
-.dot-red { background: var(--red); }
-.dot-gold { background: var(--gold); }
-.dot-green { background: var(--green); }
-.tl-line {
-  flex: 1; width: 2px; background: var(--border);
-  margin: 4px 0; min-height: 40px;
-}
-.tl-date {
-  font-size: 11px; font-weight: 600; color: var(--gray);
-  text-align: center; padding-top: 10px;
-  letter-spacing: 0.02em; line-height: 1.4;
-}
-.tl-body { padding: 0 0 40px 24px; }
-.tl-head {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 10px; flex-wrap: wrap;
-}
-.tl-title { font-size: 16px; font-weight: 700; color: var(--ink); }
-.badge {
-  font-size: 11px; padding: 2px 10px; border-radius: 20px;
-  font-weight: 600; white-space: nowrap;
-}
-.badge-red { background: #FEE2E2; color: var(--red); }
-.badge-gold { background: #FEF3C7; color: #92400E; }
-.badge-green { background: #D1FAE5; color: #065F46; }
-.tl-desc { font-size: 14px; color: var(--gray); line-height: 1.8; }
-.tl-desc strong { color: var(--ink); font-weight: 600; }
+.tl { border-top: 1px solid var(--border); }
+.tl-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); }
+.tl-date { font-size: 13px; color: var(--text-2); padding-top: 4px; }
+.tl-mark { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.dot-fail { background: #FFFFFF; border: 2px solid var(--text-3); }
+.dot-turn { background: var(--green); box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 5px var(--navy); }
+.dot-done { background: var(--navy); }
+.tl-title { font-size: 17px; font-weight: 700; color: var(--text); }
+.tag { font-size: 12px; font-weight: 500; letter-spacing: .04em; padding: 3px 10px; border-radius: 4px; white-space: nowrap; }
+.tag-err { background: var(--err-bg); color: var(--err-text); }
+.tag-info { background: var(--info-bg); color: var(--info-text); }
+.tag-ok { background: var(--ok-bg); color: var(--ok-text); }
+.tl-desc { font-size: 15px; color: var(--text-2); line-height: 1.8; max-width: 680px; }
+.tl-desc strong { color: var(--text); }
 
 /* SOLUTION */
-.solution-section { background: white; }
-.solution-box {
-  background: var(--ink); border-radius: 16px;
-  padding: 40px 36px; margin-bottom: 24px;
-}
-.sol-tag {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
-}
-.solution-box h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(22px, 3vw, 32px);
-  color: white; margin-bottom: 16px; line-height: 1.2;
-}
-.solution-box p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.8; }
-.sol-steps {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: rgba(255,255,255,0.08);
-  border-radius: 10px; overflow: hidden; margin-top: 28px;
-}
-.sol-step { background: rgba(255,255,255,0.04); padding: 20px 16px; }
-.sol-step .s-num {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
-  color: var(--gold); margin-bottom: 10px;
-}
-.sol-step p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.sol { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.sol-top { padding: 40px 36px; background: #FFFFFF; }
+.sol-top h3 { font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; color: var(--navy); line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 16px; }
+.sol-top p { font-size: 15px; color: var(--text-2); line-height: 1.8; max-width: 720px; }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); background: var(--bg); }
+.step { padding: 24px 22px; border-right: 1px solid var(--border); }
+.step:last-child { border-right: 0; }
+.step .s { font-size: 12px; font-weight: 500; letter-spacing: .06em; color: var(--green-text); margin-bottom: 10px; }
+.step.result .s { color: var(--navy); }
+.step p { font-size: 14px; color: var(--text); line-height: 1.7; }
 
 /* PARADIGM */
-.paradigm-section { background: var(--cream); }
-.paradigm {
-  display: grid; grid-template-columns: 1fr auto 1fr;
-  gap: 16px; align-items: center;
-}
-.par-box { border-radius: 12px; padding: 28px 24px; }
-.par-old { background: white; border: 1px solid var(--border); }
-.par-new { background: var(--ink); }
-.par-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; margin-bottom: 16px;
-}
-.par-old .par-label { color: var(--gray); }
-.par-new .par-label { color: var(--gold); }
-.par-flow { font-size: 14px; line-height: 2.2; }
-.par-old .par-flow { color: var(--gray); }
-.par-new .par-flow { color: rgba(255,255,255,0.7); }
-.fail { color: var(--red); font-weight: 600; }
-.pass { color: #2ECC9A; font-weight: 600; }
-.par-arrow {
-  font-size: 32px; color: var(--blue);
-  display: flex; align-items: center;
-}
+.par { display: grid; grid-template-columns: 1fr 48px 1fr; gap: 16px; align-items: stretch; }
+.par-box { border-radius: 6px; padding: 32px 28px; background: #FFFFFF; border: 1px solid var(--border); }
+.par-box.new { border: 2px solid var(--navy); }
+.par-label { font-size: 12px; font-weight: 500; letter-spacing: .08em; margin-bottom: 18px; color: var(--text-2); }
+.par-box.new .par-label { color: var(--navy); }
+.flow { list-style: none; font-size: 15px; }
+.flow li { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-2); }
+.flow li:last-child { border-bottom: 0; }
+.par-box.new .flow li { color: var(--text); }
+.fail { color: var(--err-text); font-weight: 500; }
+.pass { color: var(--green-text); font-weight: 500; }
+.par-arrow { display: flex; align-items: center; justify-content: center; color: var(--navy); }
+.par-arrow svg { width: 28px; height: 28px; }
 
 /* QUOTE */
-.quote-section { background: var(--ink2); padding: 100px 48px; }
-.quote-inner { max-width: 720px; margin: 0 auto; text-align: center; }
-.quote-mark {
-  font-family: 'DM Serif Display', serif;
-  font-size: 80px; color: var(--gold);
-  line-height: 0.6; margin-bottom: 24px; opacity: 0.3;
-}
-blockquote {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(18px, 2.5vw, 26px);
-  color: white; line-height: 1.7; font-style: italic; margin-bottom: 32px;
-}
-cite { font-family: 'Noto Sans KR', sans-serif; font-size: 13px; color: rgba(255,255,255,0.3); font-style: normal; }
+.quote { max-width: 760px; margin: 0 auto; border-left: 3px solid var(--green); padding-left: 32px; }
+.quote p { font-size: clamp(20px, 2.4vw, 28px); font-weight: 300; line-height: 1.6; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.01em; }
+.quote cite { font-style: normal; font-size: 14px; color: var(--text-2); }
 
-/* FOOTER */
-footer { background: var(--ink); padding: 48px; }
-.footer-inner {
-  max-width: 880px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 24px; flex-wrap: wrap;
-  font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.8;
-}
-footer strong { color: rgba(255,255,255,0.5); }
+/* FOOTER (navy block allowed) */
+footer { background: var(--navy); color: rgba(255,255,255,.6); padding: 56px 40px 40px; }
+.foot { max-width: 960px; margin: 0 auto; }
+.foot-top { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.15); }
+.foot-top img { height: 28px; width: auto; }
+.foot-top span { font-size: 13px; color: rgba(255,255,255,.7); }
+.foot p { font-size: 12px; line-height: 1.8; }
+.foot .copy { margin-top: 24px; color: rgba(255,255,255,.4); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
 /* REVEAL */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal { opacity: 0; transform: translateY(8px); transition: opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1); }
 .reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-@media (max-width: 680px) {
+@media (max-width: 720px) {
   header { padding: 0 20px; }
-  .header-nav { display: none; }
-  .hero { padding: 100px 24px 60px; }
+  .nav { gap: 18px; }
+  .hero { padding: 64px 20px 0; }
   .hero-kpis { grid-template-columns: 1fr 1fr; }
-  .sec { padding: 56px 24px; }
-  .challenge-grid { grid-template-columns: 1fr; }
-  .sol-steps { grid-template-columns: 1fr 1fr; }
-  .paradigm { grid-template-columns: 1fr; }
-  .par-arrow { transform: rotate(90deg); justify-content: center; }
-  .tl-item { grid-template-columns: 80px 1fr; }
-  footer { padding: 32px 24px; }
+  .kpi { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); padding-left: 0 !important; }
+  .sec { padding: 64px 20px; }
+  .grid-3, .steps { grid-template-columns: 1fr; }
+  .step { border-right: 0; border-bottom: 1px solid var(--border); }
+  .tl-item { grid-template-columns: 1fr; gap: 8px; }
+  .par { grid-template-columns: 1fr; }
+  .par-arrow svg { transform: rotate(90deg); }
+  .quote { padding-left: 20px; }
+  footer { padding: 40px 20px 32px; }
 }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="https://koreit-case.github.io/" class="logo" aria-label="홈으로">
-    <img class="logo-img" src="data:image/png;base64,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" alt="한국토지신탁 (KOREIT)" width="190" height="34">
+  <a href="https://koreit-case.github.io/" class="logo" aria-label="한국토지신탁 사례 홈">
+    <img src="sig_pos.png" alt="한국토지신탁 (KOREIT)">
   </a>
-  <nav class="header-nav">
+  <nav class="nav">
     <a href="https://koreit-case.github.io/jangmi/" class="active">여의도 장미</a>
     <a href="https://koreit-case.github.io/yongwoon/">대전 용운주공</a>
   </nav>
@@ -312,275 +199,202 @@ footer strong { color: rgba(255,255,255,0.5); }
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid-bg" aria-hidden="true"></div>
-  <div class="hero-eyebrow">Case Study · 여의도 장미 아파트 재건축</div>
-  <h1>3번의 사업불가 판정,<br><em>한토신의 돌파구</em></h1>
-  <p class="hero-sub">일조권은 설계 이후 검토하는 항목이 아닙니다. 여의도 장미 아파트는 그 사실을 3개월간의 치열한 검토로 증명한 사업입니다.</p>
-  <div class="hero-kpis">
-    <div class="h-kpi">
-      <div class="val" style="color:#F87171;">3회</div>
-      <div class="lbl">연속 사업불가 판정</div>
-    </div>
-    <div class="h-kpi">
-      <div class="val" style="color:var(--gold);">10m</div>
-      <div class="lbl">한토신 그리드 분석 단위</div>
-    </div>
-    <div class="h-kpi">
-      <div class="val" style="color:#34D399;">3개월</div>
-      <div class="lbl">문제 발견 → 해결 완료</div>
-    </div>
-    <div class="h-kpi">
-      <div class="val" style="color:white;" data-count="374" data-suffix="세대">0세대</div>
-      <div class="lbl">최종 확정 공급 규모</div>
+  <div class="hero-inner">
+    <div class="eyebrow">CASE STUDY · 여의도 장미 아파트 재건축</div>
+    <h1>3번의 사업불가 판정,<br>한국토지신탁의 돌파구</h1>
+    <p class="hero-sub">일조권은 설계 이후 검토하는 항목이 아닙니다. 여의도 장미 아파트는 그 사실을 3개월간의 검토로 증명한 사업입니다.</p>
+    <div class="hero-kpis">
+      <div class="kpi"><div class="val">3회</div><div class="lbl">연속 사업불가 판정</div></div>
+      <div class="kpi"><div class="val">10m</div><div class="lbl">그리드 분석 단위</div></div>
+      <div class="kpi"><div class="val">3개월</div><div class="lbl">문제 발견 → 해결 완료</div></div>
+      <div class="kpi"><div class="val accent" data-count="374" data-suffix="세대">0세대</div><div class="lbl">최종 확정 공급 규모</div></div>
     </div>
   </div>
-  <div class="scroll-hint" aria-hidden="true">스크롤</div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- WHY 일조권 -->
-<section class="sec why-section">
+<!-- WHY -->
+<section class="sec">
   <div class="sec-inner">
-    <div class="sec-eyebrow reveal">왜 일조권인가</div>
-    <div class="sec-title reveal">재건축 시작 전<br>반드시 검토해야 할 단 하나의 항목</div>
-    <div class="challenge-grid reveal">
-      <div class="ch-card">
-        <div class="ch-icon">🏫</div>
-        <h4>사이트 현황</h4>
-        <p>여의도고·여의도중·여의도초가 사업부지를 인접하여 둘러싸고 있어 교육환경영향평가 일조 기준 충족이 필수입니다.</p>
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">왜 일조권인가</div>
+      <h2 class="sec-title">재건축 시작 전<br>반드시 검토해야 할 단 하나의 항목</h2>
+      <div class="ci-line"></div>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="num">01 · 사이트 현황</div>
+        <h4>학교 3곳이 부지를 둘러싼 입지</h4>
+        <p>여의도고·여의도중·여의도초가 사업부지에 인접해 있어 교육환경영향평가의 일조 기준 충족이 필수입니다.</p>
       </div>
-      <div class="ch-card">
-        <div class="ch-icon">⚖️</div>
-        <h4>근거 법령</h4>
-        <p>「교육환경평가서 작성 등에 관한 고시」에 따라 동지 기준 오전 8시~오후 4시 중 총 4시간, 연속 2시간 일조 시간 확보가 필요합니다.</p>
+      <div class="card">
+        <div class="num">02 · 근거 법령</div>
+        <h4>동지 기준 4시간, 연속 2시간</h4>
+        <p>「교육환경평가서 작성 등에 관한 고시」에 따라 동지 오전 8시~오후 4시 중 총 4시간, 연속 2시간의 일조 확보가 요구됩니다.</p>
       </div>
-      <div class="ch-card">
-        <div class="ch-icon">📉</div>
-        <h4>사업성에 미치는 영향</h4>
-        <p>일조 기준 미충족 시 건물 높이를 대폭 낮춰야 하며, 세대수 감소·용적률 저하로 직결되어 사업성 자체를 위협합니다.</p>
+      <div class="card">
+        <div class="num">03 · 사업성 영향</div>
+        <h4>높이 제한이 곧 세대수·용적률</h4>
+        <p>기준 미충족 시 건물 높이를 대폭 낮춰야 하며, 세대수 감소와 용적률 저하로 이어져 사업성 자체를 위협합니다.</p>
       </div>
     </div>
-    <div class="ch-highlight reveal">
-      <strong>핵심 포인트:</strong> 일조권은 설계 "이후" 검토하는 항목이 아닙니다. 설계를 완료한 후 일조권 검토를 하면 깎아야 할 것은 설계가 아니라 주민 여러분의 "기대"입니다. 이것이 한국토지신탁이 사업 착수 직후 가장 먼저 일조권 분석에 나선 이유입니다.
+    <div class="callout reveal">
+      <strong>핵심.</strong> 일조권은 설계 "이후" 검토하는 항목이 아닙니다. 설계를 마친 뒤 일조권을 검토하면 깎아야 할 것은 설계가 아니라 주민의 "기대"입니다. 한국토지신탁이 사업 착수 직후 일조권 분석부터 시작한 이유입니다.
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
 
 <!-- TIMELINE -->
-<section class="sec timeline-section">
+<section class="sec alt">
   <div class="sec-inner">
-    <div class="sec-eyebrow reveal">치열했던 검토 과정</div>
-    <div class="sec-title reveal">3개월간의 기록</div>
-    <div class="tl-list reveal">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">검토 과정</div>
+      <h2 class="sec-title">3개월간의 기록</h2>
+      <div class="ci-line"></div>
+    </div>
+    <div class="tl reveal">
 
       <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-dot-wrap"><div class="tl-dot dot-red">✗</div></div>
-          <div class="tl-line"></div>
-          <div class="tl-date">'25.10.30</div>
-        </div>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="tl-title">A사 최초 설계도서 수령 → 일조권 검토 의뢰</span>
-            <span class="badge badge-red">사업불가</span>
-          </div>
-          <p class="tl-desc">최초 설계안 기준 일조권 전문업체 검토 결과, 여의도고등학교 일조 수인한도 충족을 위해 전체 동의 층수를 <strong>5~16F 수준으로 대폭 낮춰야</strong> 한다는 결론. 사업 진행 불가 판정.</p>
+        <div class="tl-date">2025.10.30</div>
+        <div>
+          <div class="tl-mark"><span class="dot dot-fail"></span><span class="tl-title">A사 최초 설계도서 수령, 일조권 검토 의뢰</span><span class="tag tag-err">사업불가</span></div>
+          <p class="tl-desc">최초 설계안 기준 전문업체 검토 결과, 여의도고등학교 일조 수인한도 충족을 위해 전체 동의 층수를 <strong>5~16F 수준으로 대폭 낮춰야</strong> 한다는 결론. 사업 진행 불가 판정.</p>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-dot-wrap"><div class="tl-dot dot-red">✗</div></div>
-          <div class="tl-line"></div>
-          <div class="tl-date">'25.11~12</div>
-        </div>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="tl-title">B사·C사 대안설계 추가 검토 2회</span>
-            <span class="badge badge-red">3회 연속 사업불가</span>
-          </div>
-          <p class="tl-desc">배치 변경, 층수 조정, 타워형 검토 등 모든 대안을 시도했으나 B사 1차('25.12.05), C사 1차('25.12.09) 모두 일조 기준 미충족. 여의도고등학교 정밀 분석에서 기준 미달이 반복됐습니다.</p>
+        <div class="tl-date">2025.11 – 12</div>
+        <div>
+          <div class="tl-mark"><span class="dot dot-fail"></span><span class="tl-title">B사·C사 대안설계 추가 검토 2회</span><span class="tag tag-err">3회 연속 사업불가</span></div>
+          <p class="tl-desc">배치 변경, 층수 조정, 타워형 검토 등 모든 대안을 시도했으나 B사 1차(12.05), C사 1차(12.09) 모두 기준 미충족. 여의도고등학교 정밀 분석에서 미달이 반복됐습니다.</p>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-dot-wrap"><div class="tl-dot dot-gold">⚡</div></div>
-          <div class="tl-line"></div>
-          <div class="tl-date">'25.12.09</div>
-        </div>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="tl-title">한국토지신탁 독자 솔루션 제시</span>
-            <span class="badge badge-gold">한토신 SOLUTION</span>
-          </div>
-          <p class="tl-desc">기존 방식을 완전히 벗어났습니다. 사업 대상지 전체를 <strong>10m × 10m 그리드로 분할</strong>하여 각 구역에서 일조 기준을 충족하면서 건축 가능한 최대 높이값을 직접 산출, 설계사에 제공했습니다. 분석이 설계를 이끄는 방식으로의 전환.</p>
+        <div class="tl-date">2025.12.09</div>
+        <div>
+          <div class="tl-mark"><span class="dot dot-turn"></span><span class="tl-title">한국토지신탁 독자 솔루션 제시</span><span class="tag tag-info">KOREIT SOLUTION</span></div>
+          <p class="tl-desc">기존 방식을 벗어났습니다. 사업 대상지 전체를 <strong>10m × 10m 그리드로 분할</strong>하여 구역별로 일조 기준을 충족하는 최대 건축 높이를 직접 산출해 설계사에 제공했습니다. 분석이 설계를 이끄는 방식으로의 전환입니다.</p>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-dot-wrap"><div class="tl-dot dot-green">○</div></div>
-          <div class="tl-line"></div>
-          <div class="tl-date">'26.01.08</div>
-        </div>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="tl-title">C사 2차 설계 일조권 검토 결과</span>
-            <span class="badge badge-green">사업성 양호</span>
-          </div>
-          <p class="tl-desc">한토신 높이값 데이터를 반영한 결과, 처음으로 <strong>"다소 미흡하나 사업성 양호"</strong> 판정. 일부 세대 조정(−11세대)은 필요했으나 사업 추진 가능 수준으로 개선. 즉시 3차 설계 착수.</p>
+        <div class="tl-date">2026.01.08</div>
+        <div>
+          <div class="tl-mark"><span class="dot dot-done"></span><span class="tl-title">C사 2차 설계 일조권 검토 결과</span><span class="tag tag-ok">사업성 양호</span></div>
+          <p class="tl-desc">높이값 데이터를 반영한 결과 처음으로 <strong>"다소 미흡하나 사업성 양호"</strong> 판정. 일부 세대 조정(−11세대)은 필요했으나 추진 가능 수준으로 개선. 즉시 3차 설계 착수.</p>
         </div>
       </div>
 
       <div class="tl-item">
-        <div class="tl-left">
-          <div class="tl-dot-wrap"><div class="tl-dot dot-green">✓</div></div>
-          <div class="tl-date">'26.01.29</div>
-        </div>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="tl-title">C사 4차(최종) 설계 확정</span>
-            <span class="badge badge-green">사업 가능 확정</span>
-          </div>
-          <p class="tl-desc">타워형 배치를 반영한 최종 설계가 일조 기준과 사업성을 모두 충족하며 확정. 사업성 분석(<strong>비례율 106.90%</strong>) 완료 및 토지등소유자 설명회 진행.</p>
+        <div class="tl-date">2026.01.29</div>
+        <div>
+          <div class="tl-mark"><span class="dot dot-done"></span><span class="tl-title">C사 4차(최종) 설계 확정</span><span class="tag tag-ok">사업 가능 확정</span></div>
+          <p class="tl-desc">타워형 배치를 반영한 최종 설계가 일조 기준과 사업성을 모두 충족하며 확정. 사업성 분석(<strong>비례율 106.90%</strong>) 완료, 토지등소유자 설명회 진행.</p>
         </div>
       </div>
 
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
 
 <!-- SOLUTION -->
-<section class="sec solution-section">
+<section class="sec">
   <div class="sec-inner">
-    <div class="sec-eyebrow reveal">한토신의 솔루션</div>
-    <div class="sec-title reveal">왜 설계사들은 대안을 찾지 못했나</div>
-    <div class="solution-box reveal">
-      <div class="sol-tag">KOREIT INNOVATION</div>
-      <h3>사업지를 10m × 10m<br>그리드로 쪼개어보자</h3>
-      <p>통상 설계사는 신축 아파트로 인해 생기는 그림자 이동 방향을 개략적으로 검토합니다. 한국토지신탁은 이것이 부족하다는 것을 알고 있었습니다. 일조권 전문 검토업체는 일조 침해를 받는 건물을 수많은 지점으로 분리해서 분석합니다. 여의도고등학교만 해도 388개 지점입니다.</p>
-      <div class="sol-steps">
-        <div class="sol-step">
-          <div class="s-num">STEP 01</div>
-          <p>사업 대상지 전체를 10m × 10m 격자로 분할하여 좌표별 분석 구역 설정</p>
-        </div>
-        <div class="sol-step">
-          <div class="s-num">STEP 02</div>
-          <p>각 구역에서 인근 학교 일조 기준(동지 기준 4시간/연속 2시간)을 충족하는 최대 높이값 산출</p>
-        </div>
-        <div class="sol-step">
-          <div class="s-num">STEP 03</div>
-          <p>구역별 높이 제약 데이터를 수치 형태로 설계사에 직접 제공 → 설계의 출발점</p>
-        </div>
-        <div class="sol-step">
-          <div class="s-num">RESULT</div>
-          <p>설계사가 높이값 내 최적 배치를 설계 → 검토-수정 반복 없이 사업가능 설계안 도출</p>
-        </div>
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">한국토지신탁의 솔루션</div>
+      <h2 class="sec-title">왜 설계사들은 대안을 찾지 못했나</h2>
+      <div class="ci-line"></div>
+    </div>
+    <div class="sol reveal">
+      <div class="sol-top">
+        <h3>사업지를 10m × 10m<br>그리드로 쪼개어 보자</h3>
+        <p>통상 설계사는 신축 건물이 만드는 그림자의 이동 방향을 개략적으로 검토합니다. 반면 일조권 전문업체는 피해 건물을 수많은 지점으로 나누어 분석합니다. 여의도고등학교만 388개 지점입니다. 한국토지신탁은 이 간극을 메우는 방법을 직접 만들었습니다.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="s">STEP 01</div><p>사업 대상지 전체를 10m × 10m 격자로 분할하여 좌표별 분석 구역 설정</p></div>
+        <div class="step"><div class="s">STEP 02</div><p>각 구역에서 인근 학교 일조 기준(동지 4시간 / 연속 2시간)을 충족하는 최대 높이값 산출</p></div>
+        <div class="step"><div class="s">STEP 03</div><p>구역별 높이 제약 데이터를 수치로 설계사에 직접 제공 — 설계의 출발점</p></div>
+        <div class="step result"><div class="s">RESULT</div><p>설계사가 높이값 내 최적 배치를 설계 — 검토·수정 반복 없이 사업 가능 설계안 도출</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
 <!-- PARADIGM -->
-<section class="sec paradigm-section">
+<section class="sec alt">
   <div class="sec-inner">
-    <div class="sec-eyebrow reveal">패러다임의 전환</div>
-    <div class="sec-title reveal">무엇이 달랐나</div>
-    <div class="paradigm reveal">
-      <div class="par-box par-old">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">패러다임의 전환</div>
+      <h2 class="sec-title">무엇이 달랐나</h2>
+      <div class="ci-line"></div>
+    </div>
+    <div class="par reveal">
+      <div class="par-box">
         <div class="par-label">기존 방식</div>
-        <div class="par-flow">
-          설계안 완성<br>
-          → 일조권 검토<br>
-          → <span class="fail">사업불가 판정</span><br>
-          → 설계 수정<br>
-          → 재검토<br>
-          → <span class="fail">또 사업불가…</span>
-        </div>
+        <ol class="flow">
+          <li>설계안 완성</li>
+          <li>일조권 검토</li>
+          <li class="fail">사업불가 판정</li>
+          <li>설계 수정</li>
+          <li>재검토</li>
+          <li class="fail">다시 사업불가</li>
+        </ol>
       </div>
-      <div class="par-arrow">→</div>
-      <div class="par-box par-new">
+      <div class="par-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="par-box new">
         <div class="par-label">한국토지신탁 방식</div>
-        <div class="par-flow">
-          일조권 분석 먼저<br>
-          → 구역별 높이 산출<br>
-          → 설계 가이드 제공<br>
-          → 가이드 기반 설계<br>
-          → <span class="pass">사업성 양호 확인</span><br>
-          → <span class="pass">최종 설계 확정 ✓</span>
-        </div>
+        <ol class="flow">
+          <li>일조권 분석 먼저</li>
+          <li>구역별 높이 산출</li>
+          <li>설계 가이드 제공</li>
+          <li>가이드 기반 설계</li>
+          <li class="pass">사업성 양호 확인</li>
+          <li class="pass">최종 설계 확정</li>
+        </ol>
       </div>
     </div>
   </div>
 </section>
 
 <!-- QUOTE -->
-<section class="quote-section">
-  <div class="quote-inner reveal">
-    <div class="quote-mark" aria-hidden="true">"</div>
-    <blockquote>
-      "성공적인 사업의 핵심은 '정확한 시작'입니다. 여의도 장미 아파트 재건축은 일조권이라는 가장 어려운 관문을 가장 먼저, 가장 치열하게 검토했습니다."
-    </blockquote>
-    <cite>— 한국토지신탁 도시재생지원팀</cite>
+<section class="sec">
+  <div class="quote reveal">
+    <p>성공적인 사업의 핵심은 '정확한 시작'입니다. 여의도 장미 아파트 재건축은 일조권이라는 가장 어려운 관문을 가장 먼저, 가장 치열하게 검토했습니다.</p>
+    <cite>한국토지신탁 도시재생지원팀</cite>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div>
-      <p>한국토지신탁 준법감시인 심사필 제26-0011호 ('26.03.06.) · 사용일: '26.03.06.</p>
-      <p>본 안내자료는 한국토지신탁의 자산이므로 무단 배포 및 전용을 금하고 신탁방식 정비사업에 대한 이해를 돕기 위한 설명 용도에 국한됩니다.</p>
-      <p>사업진행과정에서 사업조건(인허가, 건축규모·설계의 변경, 분양가격 등)이 변경될 수 있습니다.</p>
+  <div class="foot">
+    <div class="foot-top">
+      <img src="sig_neg.png" alt="한국토지신탁 (KOREIT)">
+      <span>www.koreit.co.kr</span>
     </div>
-    <div style="text-align:right; white-space:nowrap;">
-      <strong>한국토지신탁 (KOREIT)</strong><br>
-      www.koreit.co.kr
-    </div>
+    <p>한국토지신탁 준법감시인 심사필 제26-0011호 ('26.03.06.) · 사용일: '26.03.06.</p>
+    <p>본 안내자료는 한국토지신탁의 자산이므로 무단 배포 및 전용을 금하고 신탁방식 정비사업에 대한 이해를 돕기 위한 설명 용도에 국한됩니다.</p>
+    <p>사업진행과정에서 사업조건(인허가, 건축규모·설계의 변경, 분양가격 등)이 변경될 수 있습니다.</p>
+    <div class="copy"><span>ⓒ 2026 한국토지신탁</span><span>06132 서울특별시 강남구 테헤란로 137 코레이트타워 16~19F · T 02-3451-1100</span></div>
   </div>
 </footer>
 
 <script>
-// 카운트업
 function countUp(el) {
-  const target = parseInt(el.dataset.count);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1800;
-  const start = performance.now();
+  const target = parseInt(el.dataset.count), suffix = el.dataset.suffix || '';
+  const start = performance.now(), duration = 1400;
   function step(now) {
-    const p = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - p, 4);
-    el.textContent = Math.round(target * ease).toLocaleString() + suffix;
+    const p = Math.min((now - start) / duration, 1), e = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.round(target * e).toLocaleString() + suffix;
     if (p < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
-
-// 스크롤 reveal
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    entry.target.querySelectorAll('[data-count]').forEach(countUp);
-    io.unobserve(entry.target);
-  });
+  entries.forEach(en => { if (!en.isIntersecting) return; en.target.classList.add('visible'); io.unobserve(en.target); });
 }, { threshold: 0.12 });
-
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// 히어로 카운트업
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.hero [data-count]').forEach(countUp);
-  }, 500);
-});
+window.addEventListener('load', () => setTimeout(() => document.querySelectorAll('.hero [data-count]').forEach(countUp), 300));
 </script>
 </body>
 </html>
